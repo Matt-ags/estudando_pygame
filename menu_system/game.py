@@ -1,12 +1,13 @@
 import pygame
 from menu import *
+from player_move_com_spritesheet import *
 
 class Game():
     def __init__(self):
         pygame.init() # acessar as "ferramentas" pyggame
         self.running, self.playing = True, False # running -> jogo roda, uma verdade, mesmo que voce não faça nada '-' | playing -> ação do player!
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False,False,False,False # controles pro menu, pra organizar as açoes
-        self.DISPLAY_W, self.DISPLAY_H = 480, 270 # Largura e altura da tela uai
+        self.DISPLAY_W, self.DISPLAY_H = 800, 600 # Largura e altura da tela uai
         self.display = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H)) # A TELA EM SI, só não conhecia este surface ->
         self.window = pygame.display.set_mode((self.DISPLAY_W, self.DISPLAY_H)) # a janela...
         self.font_file = pygame.font.get_default_font() # caso instalarmos, usa o nome do arquivo, tipo 'fonte.tif'
@@ -18,6 +19,8 @@ class Game():
             self.check_events() # analisa o seventos
             if self.START_KEY: # quando clicamos em começar
                 self.playing = False # quebramos o loop, não o jogo em si, tipo, ainda roda, mas o loop do menu nãop
+                inicio()
+
             self.display.fill(self.BLACK) # ATUALIZAMOS A TELA, pra que não fica tudo junto na mesma tela
             self.draw_text('Valeu por jogar :)', 20, self.DISPLAY_W/2, self.DISPLAY_H/2 )
             self.window.blit(self.display, (0,0)) # manda o display, MANDA PRA WINDOW (0,0) É PRA ALINHA DISPLAY COM WINDOW
